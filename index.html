@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="todolist.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<body>
+<div id="pozadina">
+<div id="back">
+<div id="divi">
+<form id="formi">
+<h2 id="todoheader">My To Do list <span id="demo"></span></h2>
+
+<input id="inputi"><button class="btn btn-default">Add </button>
+
+<ul id="names">
+<h1 id="empty"></h1>
+<li class="list">Get Up<button class="btn1">Delete</button></li>
+
+</ul>
+</form>
+</div>
+</div>
+ </div>
+
+</body>
+<script>
+function vreme(){
+
+var span=document.getElementById("demo");
+var now=new Date();
+
+var sati=now.getHours();
+var min=now.getMinutes();
+var sec=now.getSeconds();
+
+
+if(min<10){
+
+min="0"+min;
+}
+
+
+if(sec<10){
+
+sec="0"+sec;
+}
+span.innerHTML=" " +sati+":"+min+":"+sec;
+
+setInterval(vreme,1000);
+
+}
+
+vreme();
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById("formi").addEventListener("submit",display);
+
+
+document.getElementById("names").addEventListener("click",remove);
+
+
+
+
+function display(e){
+
+var inputi=document.getElementById("inputi").value;
+
+var li=document.createElement("li");
+
+var ul=document.getElementById("names");
+li.className="list";
+
+li.appendChild(document.createTextNode(inputi));
+
+ul.appendChild(li);
+
+var deletebtn=document.createElement("button");
+
+deletebtn.className="btn1";
+deletebtn.appendChild(document.createTextNode("Delete"));
+
+li.appendChild(deletebtn);
+
+ul.appendChild(li);
+
+var empty=document.getElementById("empty");
+if(inputi === ""){
+empty.innerHTML="You did not add any duty!!!";
+ul.innerHTML="";
+}
+
+if(inputi != ""){
+empty.innerHTML="";
+
+}
+
+
+
+
+
+e.preventDefault();
+}
+
+
+
+function remove(e){
+var ul=document.getElementById("names");
+if(e.target.classList.contains("btn1")){
+
+if(confirm("Are yu sure")){
+
+var li =e.target.parentElement;
+
+ul.removeChild(li);
+}}}
+
+
+
+</script>
+
+</html> 
